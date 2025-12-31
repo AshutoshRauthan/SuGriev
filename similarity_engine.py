@@ -36,15 +36,30 @@ def are_similar(c1, c2, threshold=0.60):
     return final_sim >= threshold
 
 c1 = {
-    "issue_text": "Garbage not collected for three days",
-    "address": "Park Street",
-    "pincode": "700016"
+    "issue_text": "Garbage pile near govt school",
+    "address": "Govt High School, JP Nagar",
+    "pincode": "560078"
 }
 
 c2 = {
-    "issue_text": "Streetlight flickering frequently",
-    "address": "Park Street",
-    "pincode": "700016"
+    "issue_text": "Waste dumping outside government school",
+    "address": "Near Government High School, J.P. Nagar",
+    "pincode": "560078"
 }
-# should be false 
-print(are_similar(c1, c2))  
+# Expected: True
+print(are_similar(c1, c2))
+# another exampel for test 
+'''
+c1 = {
+    "issue_text": "Illegal parking on roadside",
+    "address": "Ring Road",
+    "pincode": "302015"
+}
+
+c2 = {
+    "issue_text": "Water leakage from overhead tank",
+    "address": "Ring Road",
+    "pincode": "302015"
+}
+# Expected: False
+'''
