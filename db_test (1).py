@@ -1,3 +1,4 @@
+#importing functions from database.py
 from database import (
     create_tables,
     insert_complainant,
@@ -26,7 +27,7 @@ complainant_data = {
 complainant_id = insert_complainant(complainant_data)
 print("Inserted complainant ID:", complainant_id)
 
-
+#exampler complaint for testing
 complaint_data = {
     "department": "Water Supply",
     "sub_department": "Drinking Water",
