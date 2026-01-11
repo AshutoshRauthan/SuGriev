@@ -2,7 +2,7 @@ import sqlite3
 from datetime import datetime
 import uuid
 
-
+# database file name
 DB_NAME = "sugriev.db"
 
 
@@ -10,7 +10,7 @@ def get_connection():
     return sqlite3.connect(DB_NAME)
 
 
-
+# function to create all required tables
 def create_tables():
     conn = get_connection()
     cursor = conn.cursor()
@@ -70,7 +70,7 @@ def create_tables():
     print("Database and tables created successfully.")
 
 
-
+# function to insert complainant data
 def insert_complainant(data: dict)-> int:
     conn = get_connection()
     cursor = conn.cursor()
@@ -151,8 +151,8 @@ def insert_complaint(
     conn.close()
     return complaint_number
 
-
-
+# function to fetch complaints by pincode
+# join complainants and complaints tables
 def fetch_complaints_by_pincode(pincode: str):
     conn = get_connection()
     cursor = conn.cursor()
@@ -171,6 +171,8 @@ def fetch_complaints_by_pincode(pincode: str):
     return rows
 
 
+# function to update complaint status
+# update status and updated time
 
 def update_complaint_status(complaint_number: str, status: str):
     conn = get_connection()
@@ -190,7 +192,7 @@ def update_complaint_status(complaint_number: str, status: str):
     conn.close()
 
 
-
+# function to get full complaint details(for admin only)
 def get_admin_complaints(limit=None):
     conn = get_connection()
     cursor = conn.cursor()
@@ -271,7 +273,11 @@ def get_complaint_details(complaint_number: str):
 
     return dict(zip(keys, row))
 
-
+# function to get dashboard statistics
+# count total complaints
+# count pending complaints
+# count in-progress complaints
+# count high and critical complaints
 def get_dashboard_stats():
     conn = get_connection()
     cursor = conn.cursor()
