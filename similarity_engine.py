@@ -5,9 +5,9 @@ from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
 
 
-# -------------------------
+
 # Cosine Similarity
-# -------------------------
+
 def cosine_sim(v1, v2) -> float:
     """
     Computes cosine similarity between two normalized vectors
@@ -15,9 +15,9 @@ def cosine_sim(v1, v2) -> float:
     return float(np.dot(v1, v2))
 
 
-# -------------------------
+
 # Embedding Generator
-# -------------------------
+
 def generate_embeddings(issue_text: str, address_text: str):
     """
     Generates normalized embeddings for:
@@ -31,9 +31,9 @@ def generate_embeddings(issue_text: str, address_text: str):
     return issue_emb, address_emb
 
 
-# -------------------------
+
 # Similarity Checker
-# -------------------------
+
 def is_similar(
     new_issue_emb,
     new_address_emb,
