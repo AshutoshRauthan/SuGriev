@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SUGRIEV Admin Dashboard - View and manage public grievance complaints">
+    <title>Admin Dashboard | SuGiev Public Grievance Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script>
+        // Check for admin session
+        if (!sessionStorage.getItem('isAdmin')) {
+            window.location.href = 'admin_login.html';
+        }
+    </script>
+</head>
+
+<body>
+    <!-- =========================================================================
+         HEADER / NAVIGATION
+         ========================================================================= -->
+    <header class="header">
+        <div class="header__brand">
+            <div class="header__logo">
+                <img src="assets/logo.png" alt="SUGRIEV Logo">
+            </div>
+            <div class="header__title">
+                <h1>SuGriev</h1>
+                <span>
+                    Public Grievance Portal | जन शिकायत पोर्टल
+                </span>
+            </div>
+        </div>
+        <nav class="header__nav">
+            <button id="logout-btn" class="btn btn--primary" onclick="logout()">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </nav>
+    </header>
+
+    <!-- =========================================================================
+         MAIN CONTENT
+         ========================================================================= -->
+    <main class="main">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-header__title">ADMIN DASHBOARD</h1>
+            <p class="page-header__subtitle">प्रशासनिक डैशबोर्ड</p>
+        </div>
+
+        <!-- =====================================================
+             STATISTICS CARDS
+             ===================================================== -->
+        <div class="stats-grid" id="stats-container">
+            <!-- Total Complaints -->
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--total">
+                    <span class="material-symbols-outlined">assignment</span>
+                </div>
+                <div class="stat-card__content">
+                    <h3 id="total-count">0</h3>
+                    <p>Total Complaints</p>
+                </div>
+            </div>
+
+            <!-- Pending -->
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--pending">
+                    <span class="material-symbols-outlined">pending_actions</span>
+                </div>
+                <div class="stat-card__content">
+                    <h3 id="pending-count">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+
+            <!-- In Progress -->
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--progress">
+                    <span class="material-symbols-outlined">autorenew</span>
+                </div>
+                <div class="stat-card__content">
+                    <h3 id="progress-count">0</h3>
+                    <p>In Progress</p>
+                </div>
+            </div>
+
+            <!-- High / Critical -->
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--critical">
+                    <span class="material-symbols-outlined">warning</span>
+                </div>
+                <div class="stat-card__content">
+                    <h3 id="critical-count">0</h3>
+                    <p>High/Critical</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             RECENT COMPLAINTS TABLE
+             ===================================================== -->
+        <section class="table-section">
+            <div class="table-header">
+                <h2>Recent Complaints</h2>
+                <a href="all_complaints.html">View All →</a>
+            </div>
+            <table class="data-table" id="complaints-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Department</th>
+                        <th>District</th>
+                        <th>Urgency</th>
+                        <th>Status</th>
+                        <th>Similar</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="complaints-tbody">
+                    <!-- Complaint rows will be rendered by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- =========================================================================
+         FOOTER
+         ========================================================================= -->
+    <footer class="footer">
+        <p>&copy; 2026 SuGriev Public Grievance Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- =========================================================================
+         JAVASCRIPT
+         ========================================================================= -->
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize dashboard when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            renderDashboard();
+        });
+
+        function logout() {
+            sessionStorage.removeItem('isAdmin');
+            window.location.href = 'admin_login.html';
+        }
+    </script>
+</body>
+
+</html>
