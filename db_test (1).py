@@ -6,27 +6,27 @@ from database import (
     update_complaint_status
 )
 
-# Step 1: Ensure tables exist
+
 create_tables()
 
-# Step 2: Insert complainant
+#these are exampler values only
 complainant_data = {
     "first_name": "Arpan",
     "last_name": "Sharma",
     "email": "arpan@example.com",
-    "mobile": "7017154898",
+    "mobile": "--mobile number ---- ",
     "gender": "male",
     "district": "Dehradun",
-    "block": "Raipur",
-    "village_city": "Mothrowala",
-    "pincode": "248001",
-    "address": "Near Govt School"
+    "block": "---loca---",
+    "village_city": "---locat---",
+    "pincode": "--pin---",
+    "address": "--near School--"
 }
 
 complainant_id = insert_complainant(complainant_data)
 print("Inserted complainant ID:", complainant_id)
 
-# Step 3: Insert complaint
+
 complaint_data = {
     "department": "Water Supply",
     "sub_department": "Drinking Water",
@@ -45,12 +45,11 @@ complaint_number = insert_complaint(
 
 print("Inserted complaint number:", complaint_number)
 
-# Step 4: Fetch complaints by pincode
 results = fetch_complaints_by_pincode("248001")
 print("Fetched complaints for pincode 248001:")
 for r in results:
     print(r)
 
-# Step 5: Update complaint status
+
 update_complaint_status(complaint_number, "in_progress")
 print("Complaint status updated successfully.")
