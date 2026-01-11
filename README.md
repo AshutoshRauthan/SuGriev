@@ -1,6 +1,7 @@
 # SuGriev – Round 2: System Design & Implementation
 
 ## 1. Project Overview
+Note: for Better context check README_ROUND_1.md before jumping to this file.
 
 *SuGriev* is a Public Grievance Prioritization System designed to solve a very common but critical problem in existing grievance portals — lack of prioritization and fragmentation across departments.
 
