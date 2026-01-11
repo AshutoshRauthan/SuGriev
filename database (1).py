@@ -2,30 +2,20 @@ import sqlite3
 from datetime import datetime
 import uuid
 
-"""
 
-use your database name below- 
-
-"""
 DB_NAME = "sugriev.db"
 
-# -------------------------
-# Database Connection
-# -------------------------
+
 def get_connection():
     return sqlite3.connect(DB_NAME)
 
 
-# -------------------------
-# Create Tables
-# -------------------------
+
 def create_tables():
     conn = get_connection()
     cursor = conn.cursor()
 
-    # -------------------------
-    # Complainants Table
-    # -------------------------
+    
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS complainants (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,9 +33,7 @@ def create_tables():
     );
     """)
 
-    # -------------------------
-    # Complaints Table
-    # -------------------------
+  
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS complaints (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -82,9 +70,7 @@ def create_tables():
     print("Database and tables created successfully.")
 
 
-# -------------------------
-# Insert Complainant
-# -------------------------
+
 def insert_complainant(data: dict)-> int:
     conn = get_connection()
     cursor = conn.cursor()
@@ -115,16 +101,12 @@ def insert_complainant(data: dict)-> int:
     return complainant_id
 
 
-# -------------------------
-# Generate Complaint Number
-# -------------------------
+
 def generate_complaint_number() -> str:
     return f"SGR-{uuid.uuid4().hex[:8].upper()}"
 
 
-# -------------------------
-# Insert Complaint
-# -------------------------
+
 def insert_complaint(
     complainant_id: int,
     complaint_data: dict,
@@ -170,9 +152,7 @@ def insert_complaint(
     return complaint_number
 
 
-# -------------------------
-# Fetch Complaints by Pincode (for similarity)
-# -------------------------
+
 def fetch_complaints_by_pincode(pincode: str):
     conn = get_connection()
     cursor = conn.cursor()
@@ -191,9 +171,7 @@ def fetch_complaints_by_pincode(pincode: str):
     return rows
 
 
-# -------------------------
-# Update Complaint Status
-# -------------------------
+
 def update_complaint_status(complaint_number: str, status: str):
     conn = get_connection()
     cursor = conn.cursor()
@@ -212,9 +190,7 @@ def update_complaint_status(complaint_number: str, status: str):
     conn.close()
 
 
-# -------------------------
-# Admin Dashboard – Complaint List
-# -------------------------
+
 def get_admin_complaints(limit=None):
     conn = get_connection()
     cursor = conn.cursor()
@@ -255,9 +231,6 @@ def get_admin_complaints(limit=None):
     ]
 
 
-# -------------------------
-# Complaint Details Page
-# -------------------------
 def get_complaint_details(complaint_number: str):
     conn = get_connection()
     cursor = conn.cursor()
@@ -298,9 +271,7 @@ def get_complaint_details(complaint_number: str):
 
     return dict(zip(keys, row))
 
-# -------------------------
-# Admin Dashboard Stats
-# -------------------------
+
 def get_dashboard_stats():
     conn = get_connection()
     cursor = conn.cursor()
@@ -330,8 +301,5 @@ def get_dashboard_stats():
     }
 
 
-# -------------------------
-# Initialize DB (Run Once)
-# -------------------------
 if __name__ == "__main__":
     create_tables()
