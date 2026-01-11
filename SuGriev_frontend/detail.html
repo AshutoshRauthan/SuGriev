@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SUGRIEV Complaint Details - View detailed information about a public grievance">
+    <title>Complaint Details | SuGiev Public Grievance Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script>
+        // Check for admin session
+        if (!sessionStorage.getItem('isAdmin')) {
+            window.location.href = 'admin_login.html';
+        }
+    </script>
+</head>
+
+<body>
+    <!-- =========================================================================
+         HEADER / NAVIGATION
+         ========================================================================= -->
+    <header class="header">
+        <div class="header__brand">
+            <div class="header__logo">
+                <img src="assets/logo.png" alt="SUGRIEV Logo">
+            </div>
+            <div class="header__title">
+                <h1>SuGriev</h1>
+                <span>
+                    Public Grievance Portal | जन शिकायत पोर्टल
+                </span>
+            </div>
+        </div>
+        <nav class="header__nav">
+            <button id="logout-btn" class="btn btn--primary" onclick="logout()">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </nav>
+    </header>
+
+    <!-- =========================================================================
+         MAIN CONTENT
+         ========================================================================= -->
+    <main class="main">
+        <!-- Back Link -->
+        <a href="dashboard.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+        <!-- Page Header with Complaint ID -->
+        <div class="page-header page-header--with-id">
+            <div>
+                <h1 class="page-header__title">COMPLAINT DETAILS</h1>
+                <p class="page-header__subtitle">शिकायत विवरण</p>
+            </div>
+            <span class="page-header__id" id="complaint-id-header">GRV-2024-001</span>
+        </div>
+
+        <!-- =====================================================
+             URGENCY ALERT BANNER
+             ===================================================== -->
+        <div class="urgency-banner urgency-banner--high" id="urgency-banner">
+            <span class="urgency-banner__icon"><span class="material-symbols-outlined">warning</span></span>
+            <div class="urgency-banner__content">
+                <h3 id="urgency-title">High Urgency - Score: 85/100</h3>
+                <p id="urgency-message">This complaint requires immediate attention.</p>
+            </div>
+        </div>
+
+        <!-- =====================================================
+             DETAIL CONTENT GRID
+             ===================================================== -->
+        <div class="detail-grid">
+            <!-- Left Column -->
+            <div class="detail-column">
+
+                <!-- Complainant Information Card -->
+                <div class="detail-card">
+                    <div class="detail-card__header">
+                        <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                        <h3>Complainant Information</h3>
+                    </div>
+                    <div class="detail-card__content">
+                        <div class="detail-grid-inner">
+                            <div class="detail-item">
+                                <div class="detail-item__label">Name</div>
+                                <div class="detail-item__value" id="complainant-name">Rajesh Kumar</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item__label">Email</div>
+                                <div class="detail-item__value" id="complainant-email">rajesh.kumar@email.com</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item__label">Mobile</div>
+                                <div class="detail-item__value" id="complainant-mobile">9876543210</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item__label">Gender</div>
+                                <div class="detail-item__value" id="complainant-gender">Male</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Details Card -->
+                <div class="detail-card">
+                    <div class="detail-card__header">
+                        <span class="icon"><span class="material-symbols-outlined">location_on</span></span>
+                        <h3>Location Details</h3>
+                    </div>
+                    <div class="detail-card__content">
+                        <div class="detail-grid-inner">
+                            <div class="detail-item">
+                                <div class="detail-item__label">District</div>
+                                <div class="detail-item__value" id="location-district">Lucknow</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item__label">Block</div>
+                                <div class="detail-item__value" id="location-block">Sarojini Nagar</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item__label">Village/City</div>
+                                <div class="detail-item__value" id="location-village">Aliganj</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item__label">Pin Code</div>
+                                <div class="detail-item__value" id="location-pincode">226024</div>
+                            </div>
+                            <div class="detail-item detail-item--full">
+                                <div class="detail-item__label">Address</div>
+                                <div class="detail-item__value" id="location-address">123, Main Road, Aliganj, Lucknow
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Complaint Description Card -->
+                <div class="detail-card">
+                    <div class="detail-card__header">
+                        <span class="icon"><span class="material-symbols-outlined">description</span></span>
+                        <h3>Complaint Description</h3>
+                    </div>
+                    <div class="detail-card__content">
+                        <div class="description-text" id="complaint-description">
+                            The road near our locality has developed multiple potholes causing inconvenience to
+                            commuters. Several accidents have occurred in the past month.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="detail-column">
+
+                <!-- Status & Urgency Card -->
+                <div class="detail-card">
+                    <div class="detail-card__header">
+                        <span class="icon"><span class="material-symbols-outlined">bar_chart</span></span>
+                        <h3>Status & Urgency</h3>
+                    </div>
+                    <div class="detail-card__content status-section">
+                        <div class="detail-item">
+                            <div class="detail-item__label">Urgency Level</div>
+                            <div class="urgency-score">
+                                <span class="badge badge--high" id="urgency-badge">High</span>
+                                <span id="urgency-score-text">Score: 85/100</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Current Status</div>
+                            <div>
+                                <span class="badge badge--pending" id="status-badge">Pending</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Similar Complaints Detected</div>
+                            <div class="detail-item__value" id="similar-count" style="font-weight:bold;">0</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Update Status</div>
+                            <select id="status-update" name="status_update">
+                                <option value="pending">Pending</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Card -->
+                <div class="detail-card">
+                    <div class="detail-card__header">
+                        <span class="icon"><span class="material-symbols-outlined">apartment</span></span>
+                        <h3>Department</h3>
+                    </div>
+                    <div class="detail-card__content">
+                        <div class="detail-item">
+                            <div class="detail-item__label">Department</div>
+                            <div class="detail-item__value" id="dept-name">Public Works Department (PWD)</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Sub Department</div>
+                            <div class="detail-item__value" id="dept-sub">Roads</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Complaint District</div>
+                            <div class="detail-item__value" id="dept-district">Lucknow</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meta Information Card -->
+                <div class="detail-card">
+                    <div class="detail-card__header">
+                        <span class="icon"><span class="material-symbols-outlined">calendar_today</span></span>
+                        <h3>Meta Information</h3>
+                    </div>
+                    <div class="detail-card__content">
+                        <div class="detail-item">
+                            <div class="detail-item__label">Created Date</div>
+                            <div class="detail-item__value" id="meta-date">15 Jan 2024</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Last Updated</div>
+                            <div class="detail-item__value" id="meta-updated">N/A</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item__label">Complaint ID</div>
+                            <div class="detail-item__value" id="meta-id">GRV-2024-001</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =========================================================================
+         FOOTER
+         ========================================================================= -->
+    <footer class="footer">
+        <p>&copy; 2026 SuGriev · Public Grievance Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- =========================================================================
+         JAVASCRIPT
+         ========================================================================= -->
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize detail page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Parse complaint ID from URL query parameter (e.g., ?id=GRV-2024-001)
+            const urlParams = new URLSearchParams(window.location.search);
+            const complaintId = urlParams.get('id') || 'GRV-2024-001';
+
+            renderComplaintDetails(complaintId);
+        });
+
+        function logout() {
+            sessionStorage.removeItem('isAdmin');
+            window.location.href = 'admin_login.html';
+        }
+    </script>
+</body>
+
+</html>
